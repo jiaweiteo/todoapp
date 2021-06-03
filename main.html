@@ -1,0 +1,31 @@
+<head></head>
+    <body>
+        <h1>My Todos</h1>
+        <ul></ul>
+        <script>
+            // const {ipcRenderer} = require('electron'); // with nodeIntegration
+            const list = document.querySelector('ul');
+
+            // //With Node Integration
+            // ipcRenderer.on('todo:addFromMainProcess', (event, data) => {
+            //     const li = document.createElement('li');
+            //     // const text = document.createTextNode(data); //Safe from xss rce since data is converted to string
+            //     // li.appendChild(text);
+            //     // list.appendChild(li);
+            //     list.innerHTML += '<p>' + data + '</p>'; //Not safe from xss!
+            // })
+
+            // ipcRenderer.on('todo:clearFromMainProcess', () => {
+            //     list.innerHTML = "";
+            // })
+
+            window.api.receive("todo:addFromMainProcess", (data) => {//need 1 window.api.receive here to for window api to receive instructions from ipcrenderer.
+                // list.innerHTML += '<p>' + data + '</p>';
+            })
+            // window.api.receive("todo:clearFromMainProcess", (data) => {
+            //     // list.innerHTML = "";
+            // })
+
+        </script>
+    </body>
+
